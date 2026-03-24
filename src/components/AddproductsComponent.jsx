@@ -81,6 +81,7 @@ const AddProductsComponent = () => {
                         <option value="Toyota">Toyota</option>
                         <option value= "Mercedes">Mercedes</option>
                         <option value="Mazda">Mazda</option>
+                        <option value="Porshe">porshe</option>
 
                     </select> <br />
 
