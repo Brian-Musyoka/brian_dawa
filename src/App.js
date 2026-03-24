@@ -8,6 +8,7 @@ import SignUpComponent from './components/SignUpComponent';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import NavbarComponent from './components/NavbarComponent';
+import MakePaymentComponent from './components/MakePaymentComponent';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/Addproducts' element ={<AddProductsComponent/>}/>
         <Route path='/SignIn' element ={<SignInComponent/>}/>
         <Route path='/signUp' element ={<SignUpComponent/>}/>
+        <Route path= "/makepayment" element={<MakePaymentComponent/>}/>
       </Routes>
   
     </div>
