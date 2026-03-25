@@ -14,11 +14,12 @@ import MakePaymentComponent from './components/MakePaymentComponent';
 function App() {
   return (
     <BrowserRouter>
+    <div className="container-fluid">
     <div className="App">
       <NavbarComponent/>
       
     <header className='App-header'>
-      <h1>Brian</h1>
+      <h1>Brian-Motors</h1>
       </header>
       <Routes>
         <Route path='/' element ={<GetProductsComponent/>}/>
@@ -28,6 +29,7 @@ function App() {
         <Route path= "/makepayment" element={<MakePaymentComponent/>}/>
       </Routes>
   
+    </div>
     </div>
     </BrowserRouter>
     
