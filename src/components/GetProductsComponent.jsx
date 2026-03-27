@@ -7,6 +7,10 @@ const GetProductsComponent = () => {
     let [products, setProducts] = useState([])
     let [loading, setLoading] = useState("")
     let [error, setError] = useState("")
+    let[product,setProduct] =useState([])
+    let [search_Word,setSearchword]=useState([])
+    let[filtered_products,setFilteredProducts]= useState([])
+
 
     // base url for images from server
     const img_url = "https://brianm.alwaysdata.net/static/images/"
@@ -24,6 +28,10 @@ const GetProductsComponent = () => {
             if (response.status === 200) {
                 setLoading("")
                 setProducts(response.data)
+
+                let product_cat =response.data.filter(
+                    (product) =>product.product_category ==="product"
+                )
             }
         } catch (error) {
             setLoading("")
