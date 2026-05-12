@@ -58,10 +58,15 @@ const SignIncomponent = () => {
                 <h5 className="text-success">{success}</h5>
 
                 <form onSubmit={handleSubmit}>
-                    <input type="email" className="form-control" placeholder="Email" required value={email} onChange={(e) => { updateEmail(e.target.value) }} /> <br />
+                    <input  type="email" className="form-control"  placeholder="Email" required value={email} onChange={(e) => { updateEmail(e.target.value) }} /> <br />
                     <input type="password" className="form-control" placeholder="Enter your password" required value={password} onChange={(e) => { updatePassword(e.target.value) }} /><br />
                     <button className="btn btn-dark">Sign in</button> <br />
-                    <Link to="/signup">Already Have an Account?Sign Up</Link>
+                    <p className="text-center mt-3">
+                        Already have an account?{" "}
+                        <Link to="/signin" style={{ textDecoration: "none", fontWeight: "bold" }}>
+                            Sign up
+                        </Link>
+                    </p>
                 </form>
             </div>
         </div>

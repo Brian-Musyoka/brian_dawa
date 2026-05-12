@@ -1,8 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
-
-
-    
+import { useState } from "react";    
 
 const AddProductsComponent = () => {
     let[product_name,setProductName] = useState("")

@@ -2,11 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const SignUpComponent = () => {
     let [username, updateUsername] = useState("")
     let [phone, updatePhone] = useState("")
     let [password, updatePassword] = useState("")
     let [email, updateEmail] = useState("")
+    let [passwordStrength, setPasswordStrength] = useState("")
 
     // loading state variables
     let [loading, updateLoading] = useState("")
@@ -50,6 +52,20 @@ const SignUpComponent = () => {
             updateError(error.message)
         }
     }
+
+        const checkPasswordStrength = (password) => {
+        if (password.length < 6) return "Weak"
+
+        const hasUpper = /[A-Z]/.test(password)
+        const hasLower = /[a-z]/.test(password)
+        const hasNumber = /[0-9]/.test(password)
+        const hasSpecial = /[^A-Za-z0-9]/.test(password)
+
+        const score = [hasUpper, hasLower, hasNumber, hasSpecial].filter(Boolean).length
+
+        if (score <= 2) return "Medium"
+        return "Strong"
+        }
 
 
     return (
@@ -99,7 +115,51 @@ const SignUpComponent = () => {
                         placeholder="enter password"
                         required
                         value={password}
-                        onChange={(e) => { updatePassword(e.target.value) }} />
+                        onChange={(e) => {
+                        const value = e.target.value
+                        updatePassword(value)
+                        setPasswordStrength(checkPasswordStrength(value))
+                    }}  
+                    />
+                                    {password && (
+                    <div className="mb-3">
+                        <div
+                            style={{
+                                height: "6px",
+                                borderRadius: "5px",
+                                background:
+                                    passwordStrength === "Weak"
+                                        ? "#dc3545"
+                                        : passwordStrength === "Medium"
+                                        ? "#ffc107"
+                                        : "#28a745",
+                                width:
+                                    passwordStrength === "Weak"
+                                        ? "33%"
+                                        : passwordStrength === "Medium"
+                                        ? "66%"
+                                        : "100%",
+                                transition: "0.3s"
+                            }}
+                        />
+                        <small className="text-muted">Password strength: {passwordStrength}</small>
+                    </div>
+                )}
+
+
+                                        {password && (
+                        <small
+                            className={
+                                passwordStrength === "Weak"
+                                    ? "text-danger"
+                                    : passwordStrength === "Medium"
+                                    ? "text-warning"
+                                    : "text-success"
+                            }
+                        >
+                            Strength: {passwordStrength}
+                        </small>
+                    )}
                     <br />
 
 
@@ -107,7 +167,13 @@ const SignUpComponent = () => {
                         Sign Up
                     </button><br />
 
-                    <Link to="/signin">Alredy have an account?Sign in</Link>
+                    <p className="text-center mt-3">
+                        Already have an account?{" "}
+                        <Link to="/signin" style={{ textDecoration: "none", fontWeight: "bold" }}>
+                            Sign in
+                        </Link>
+                    </p>
+
                 </form>
             </div>
         </div>
